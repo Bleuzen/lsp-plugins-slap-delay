@@ -62,6 +62,8 @@ namespace lsp
             PAN_CTL("p" id, label " panorama", 0.0f)
 
         #define SLAP_PAN_STEREO(id, label) \
+            AMP_GAIN1("igl" id, label " left channel input", GAIN_AMP_0_DB), \
+            AMP_GAIN1("igr" id, label " right channel input", GAIN_AMP_0_DB), \
             PAN_CTL("pl" id, label " left channel panorama", -100.0f), \
             PAN_CTL("pr" id, label " right channel panorama", 100.0f)
 

@@ -90,13 +90,15 @@
 		<cgroup id="lsel" text="Delay lines: " ipadding="0">
 			<!-- 4 groups -->
 			<ui:for id="g" first="0" last="3">
-				<grid rows="22" cols="24" spacing="0">
+				<grid rows="22" cols="27" spacing="0">
 
 					<cell rows="2"><label text="labels.specials.num" hreduce="true" pad.h="6"/></cell>
 					<cell rows="22"><vsep bg.color="bg" pad.h="2" pad.t="4" pad.b="0" hreduce="true"/></cell>
 					<cell rows="2"><label text="labels.mode"/></cell>
 					<cell rows="2"><vsep bg.color="bg" pad.h="2" pad.t="4" pad.b="0" hreduce="true"/></cell>
 					<cell rows="2"><label text="labels.delay"/></cell>
+					<cell rows="2"><vsep bg.color="bg" pad.h="2" hreduce="true"/></cell>
+					<cell cols="2"><label text="labels.input:db" pad.v="4"/></cell>
 					<cell rows="2"><vsep bg.color="bg" pad.h="2" hreduce="true"/></cell>
 					<cell cols="2"><label text="labels.panorama:pc" pad.v="4"/></cell>
 					<cell rows="2"><vsep bg.color="bg" pad.h="2" hreduce="true"/></cell>
@@ -115,6 +117,8 @@
 					<ui:with pad.b="4">
 						<label text="labels.chan.left"/>
 						<label text="labels.chan.right"/>
+						<label text="labels.chan.left"/>
+						<label text="labels.chan.right"/>
 						<label text="labels.units.:db"/>
 						<label text="labels.units.:db"/>
 						<label text="labels.units.:hz"/>
@@ -130,7 +134,7 @@
 						<!-- Row 1 -->
 						<ui:with bg.color="bg" pad.v="2" vreduce="true">
 							<hsep/>
-							<cell cols="10"><hsep/></cell>
+							<cell cols="13"><hsep/></cell>
 							<hsep/>
 							<cell cols="9"><hsep/></cell>
 						</ui:with>
@@ -151,6 +155,9 @@
 								<knob id="dd${i}" visibility="(:dm${i} ieq 0) or (:dm${i} ieq 2)" scolor="!:dm${i} or :m${i} or ((${has_solo}) and !:s${i} and :dm${i}) ? 'cycle_inactive' : 'kscale'"/>
 								<frac id="df${i}" den.id="ds${i}" visibility=":dm${i} ieq 3" color="green"/>
 							</hbox>
+							<cell rows="2"><void bg.color="bg_schema" width.max="4" hreduce="true"/></cell>
+							<knob id="igl${i}" pad.h="6" scolor="!:dm${i} or :m${i} or ((${has_solo}) and !:s${i} and :dm${i}) ?  'cycle_inactive' : 'left'"/>
+							<knob id="igr${i}" pad.h="6" scolor="!:dm${i} or :m${i} or ((${has_solo}) and !:s${i} and :dm${i}) ?  'cycle_inactive' : 'right'"/>
 							<cell rows="2"><void bg.color="bg_schema" width.max="4" hreduce="true"/></cell>
 							<knob id="pl${i}" pad.h="6" scolor="!:dm${i} or :m${i} or ((${has_solo}) and !:s${i} and :dm${i}) ?  'cycle_inactive' : 'left'"/>
 							<knob id="pr${i}" pad.h="6" scolor="!:dm${i} or :m${i} or ((${has_solo}) and !:s${i} and :dm${i}) ?  'cycle_inactive' : 'right'"/>
@@ -204,6 +211,8 @@
 								<value id="df${i}" visibility=":dm${i} ieq 3" same_line="true" precision="3"/>
 							</hbox>
 							<ui:attributes detailed="false">
+								<value id="igl${i}"/>
+								<value id="igr${i}"/>
 								<value id="pl${i}"/>
 								<value id="pr${i}"/>
 								<value id="dfb${i}"/>

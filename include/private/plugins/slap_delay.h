@@ -70,6 +70,7 @@ namespace lsp
                     plug::IPort            *pDistance;  // Delay in distance units
                     plug::IPort            *pFrac;      // Fraction
                     plug::IPort            *pDenom;     // Denominator
+                    plug::IPort            *pInGain[2]; // Amount of gain for left and right input channels
                     plug::IPort            *pPan[2];    // Pan of left and right input channels
                     plug::IPort            *pFeedback;  // Feedback amount
                     plug::IPort            *pGain;      // Gain of the delay line

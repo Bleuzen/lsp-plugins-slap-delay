@@ -94,6 +94,8 @@ namespace lsp
                 p->pDistance        = NULL;
                 p->pFrac            = NULL;
                 p->pDenom           = NULL;
+                p->pInGain[0]       = NULL;
+                p->pInGain[1]       = NULL;
                 p->pPan[0]          = NULL;
                 p->pPan[1]          = NULL;
                 p->pFeedback        = NULL;
@@ -190,6 +192,8 @@ namespace lsp
                 p->pMode            = NULL;
                 p->pTime            = NULL;
                 p->pDistance        = NULL;
+                p->pInGain[0]       = NULL;
+                p->pInGain[1]       = NULL;
                 p->pPan[0]          = NULL;
                 p->pPan[1]          = NULL;
                 p->pGain            = NULL;
@@ -255,6 +259,8 @@ namespace lsp
                 processor_t *p      = &vProcessors[i];
 
                 BIND_PORT(p->pMode);
+                for (size_t j=0; j<nInputs; ++j)
+                    BIND_PORT(p->pInGain[j]);
                 for (size_t j=0; j<nInputs; ++j)
                     BIND_PORT(p->pPan[j]);
 
@@ -425,6 +431,9 @@ namespace lsp
                 {
                     float pan_l             = p->pPan[0]->value();
                     float pan_r             = p->pPan[1]->value();
+                    // TODO
+                    float gain_l            = p->pInGain[0]->value();
+                    float gain_r            = p->pInGain[1]->value();
 
                     p->vDelay[0].fGain[0]   = (100.0f - pan_l) * 0.005f * delay_gain;
                     p->vDelay[0].fGain[1]   = (100.0f - pan_r) * 0.005f * delay_gain;
@@ -826,6 +835,7 @@ namespace lsp
                         v->write("pDistance", p->pDistance);
                         v->write("pFrac", p->pFrac);
                         v->write("pDenom", p->pDenom);
+                        v->writev("pInGain", p->pInGain, 2);
                         v->writev("pPan", p->pPan, 2);
                         v->write("pFeedback", p->pFeedback);
                         v->write("pGain", p->pGain);
